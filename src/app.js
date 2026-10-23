@@ -189,7 +189,19 @@ async function start() {
   });
   app.render();
   app.background();
-  if ('serviceWorker' in navigator && (!isLocal || new URLSearchParams(location.search).has('sw'))) navigator.serviceWorker.register('./sw.js').catch(() => {});
+  if ('serviceWorker' in navigator && (!isLocal || new URLSearchParams(location.search).has('sw'))) {
+    // When a new version takes over a page that an older version was serving,
+    // reload once so she runs the new code instead of the copy cached offline.
+    const hadController = Boolean(navigator.serviceWorker.controller);
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadController || reloaded) return;
+      reloaded = true;
+      try { sessionStorage.setItem('p75.updatedAt', String(Date.now())); } catch { /* private mode */ }
+      location.reload();
+    });
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
   window.__app = isLocal ? app : undefined;
 }
 
