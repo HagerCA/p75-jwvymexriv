@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="theme-color" content="#1E1024">
+<title>75 Petite</title>
+<link rel="preload" href="./fonts/DMSans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./fonts/SpaceGrotesk-a57c9413.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <div class="brand">75 <span>Petite</span></div>
+    <button class="icon-btn" id="settings-btn" aria-label="Settings">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm7.4-2.5a7.6 7.6 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.4 7.4 0 0 0-1.7-1L15 3.5h-4l-.3 2.5a7.4 7.4 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1c.5.4 1.1.7 1.7 1l.3 2.5h4l.3-2.5c.6-.3 1.2-.6 1.7-1l2.4 1 2-3.4-2-1.6z"/></svg>
+    </button>
+  </div>
+  <div class="day-line" id="day-line"></div>
+</header>
+<main id="main"></main>
+<nav class="tabs" id="tabs">
+  <button data-tab="today" class="on">Today</button>
+  <button data-tab="week">This Week</button>
+  <button data-tab="days75">75 Days</button>
+</nav>
+<div id="sheet-root"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="https://accounts.google.com/gsi/client" async></script>
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>
