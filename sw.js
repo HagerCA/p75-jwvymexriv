@@ -1,6 +1,6 @@
 // App shell, cache-first, so the app opens with no signal. Only this site's own
 // files are cached: the relay and every Google host always go to the network.
-const VERSION = 'p75-v5';
+const VERSION = 'p75-v6';
 const SHELL = [
   './',
   './index.html',
