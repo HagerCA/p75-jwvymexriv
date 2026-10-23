@@ -1,6 +1,6 @@
 // App shell, cache-first, so the app opens with no signal. Only this site's own
 // files are cached: the relay and every Google host always go to the network.
-const VERSION = 'p75-v4';
+const VERSION = 'p75-v5';
 const SHELL = [
   './',
   './index.html',
@@ -33,7 +33,13 @@ const SHELL = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  // cache: 'reload' skips the browser's HTTP cache, so a new version never stores
+  // a stale copy of a file that GitHub Pages is still serving from its 10-minute cache.
+  e.waitUntil(
+    caches.open(VERSION)
+      .then((c) => c.addAll(SHELL.map((u) => new Request(u, { cache: 'reload' }))))
+      .then(() => self.skipWaiting()),
+  );
 });
 
 self.addEventListener('activate', (e) => {
